@@ -1,4 +1,4 @@
-import { Directive, TemplateRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, ComponentFactoryResolver, Input } from '@angular/core';
 import { ScrollHostDirective } from './scroll-host.directive';
 import { PlaceholderComponent } from './placeholder.component';
 
@@ -11,6 +11,9 @@ export class IfVisibleDirective {
 
   templateView = this.templateRef.createEmbeddedView({});
   wrapperFactory = this.resolver.resolveComponentFactory(PlaceholderComponent);
+
+  @Input('rtdbIfVisible') height = 1;
+  @Input('rtdbIfVisibleChildrenCount') childrenCount = 0;
 
   constructor(
     private templateRef: TemplateRef<any>,
@@ -67,7 +70,9 @@ export class IfVisibleDirective {
       this.scrollHost.registerItem(this);
     } else {
       const c = this.viewContainer.createComponent(this.wrapperFactory);
+      c.instance.childrenCount = this.childrenCount;
       this.elem = c.instance.element;
+      c.changeDetectorRef.detectChanges();
       this.scrollHost.registerItem(this);
     }
 

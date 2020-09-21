@@ -22,7 +22,8 @@ export class ScrollHostDirective implements OnDestroy, AfterViewInit {
         this.handleIntersectionChange,
         {
           root: this.elemRef.nativeElement,
-          rootMargin: this.margin,
+          // rootMargin: this.margin,
+          rootMargin: '10%',
           threshold: 0
         }
       );

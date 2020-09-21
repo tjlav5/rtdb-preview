@@ -1,6 +1,6 @@
 <ng-container *ngIf="viewModel$ | async as viewModel">
   <div>{{ viewModel.ref }}</div>
   <ng-container *ngFor="let ref of viewModel.children; trackBy: trackByKey">
-    <rtdb-node *rtdbIfVisible [ref]="ref"></rtdb-node>
+    <rtdb-node *rtdbIfVisible="1; childrenCount: ref[1]" [ref]="ref[0]"></rtdb-node>
   </ng-container>
 </ng-container>
