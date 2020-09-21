@@ -17,7 +17,7 @@ export class NodeComponent {
 
   viewModel$ = this.ref$.pipe(switchMapToViewModel());
 
-  trackByKey(index: number, ref: firebase.database.Reference) {
+  trackByKey(index: number, [ref]: [firebase.database.Reference, number]) {
     return ref.key;
   }
 }
