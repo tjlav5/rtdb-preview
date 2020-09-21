@@ -1,21 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import * as firebase from 'firebase/app';
+
+interface RtdbConfig {
+  databaseUrl: string;
+  apiKey: string;
+}
 
 @Component({
-  selector: 'rtdb-rtdb',
+  selector: 'rtdb',
   template: `
-    <p>
-      rtdb works test!
-      <rtdb-foo></rtdb-foo>
-    </p>
+  <div class="host" rtdbScrollHost>
+    <rtdb-node [ref]="ref"></rtdb-node>
+  </div>
   `,
   styles: [
-  ]
+    '.host {height: 100%; overflow: scroll;}'
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RtdbComponent implements OnInit {
+export class RtdbComponent {
+  @Input() ref: firebase.database.Reference;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnChanges() {
+    console.log(this.ref)
   }
-
 }
