@@ -12,6 +12,12 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/rtdb/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/rtdb/tsconfig.spec.json"
     }
 ]
 }

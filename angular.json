@@ -123,6 +123,46 @@
           }
         }
       }
+    },
+    "rtdb": {
+      "projectType": "library",
+      "root": "projects/rtdb",
+      "sourceRoot": "projects/rtdb/src",
+      "prefix": "rtdb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/rtdb/tsconfig.lib.json",
+            "project": "projects/rtdb/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/rtdb/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/rtdb/src/test.ts",
+            "tsConfig": "projects/rtdb/tsconfig.spec.json",
+            "karmaConfig": "projects/rtdb/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/rtdb/tsconfig.lib.json",
+              "projects/rtdb/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "rtdb-preview"
 }
